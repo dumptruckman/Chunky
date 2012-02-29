@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dumptruckman.chunky</groupId>
+    <artifactId>chunky</artifactId>
+    <version>dev-SNAPSHOT</version>
+    <name>Chunky</name>
+    <description>API for Minecraft plugins that offer self-service region protection.</description>
+    <packaging>pom</packaging>
+
+    <scm>
+        <connection>scm:git:git://github.com/dumptruckman/chunky.git</connection>
+        <url>https://github.com/dumptruckman/craftbook</url>
+        <developerConnection>scm:git:git@github.com:dumptruckman/chunky.git</developerConnection>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.number>UNKNOWN</project.build.number>
+    </properties>
+
+    <!-- Modules -->
+    <modules>
+        <module>api</module>
+        <module>bukkit</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>griefcraft</id>
+            <url>http://repo.griefcraft.com/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>griefcraft</id>
+            <url>http://repo.griefcraft.com/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
