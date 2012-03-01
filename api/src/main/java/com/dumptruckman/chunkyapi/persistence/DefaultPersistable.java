@@ -6,10 +6,15 @@ import com.dumptruckman.chunkyapi.json.JSONTokener;
 
 import java.sql.Timestamp;
 
-public class SimplePersistable implements Persistable {
+public class DefaultPersistable implements Persistable {
+
+    private static final int SEED = 42;
+    private static final int fODD_PRIME_NUMBER = 37;
 
     protected long id;
     protected String className;
+    protected String name = "";
+    protected String description = "";
     private Timestamp timestamp;
 
     private JSONObject data = new JSONObject();
@@ -22,6 +27,37 @@ public class SimplePersistable implements Persistable {
     @Override
     public String getClassName() {
         return className;
+    }
+
+    /**
+     * @return The name of this object.
+     */
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of this object to name.
+     *
+     * @param name New name for object.
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return A description of this object, may be blank.
+     */
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -93,5 +129,19 @@ public class SimplePersistable implements Persistable {
                     throw x.syntaxError("Expected a ',' or '}'");
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Persistable && ((Persistable)o).getId() == id;
+    }
+
+    @Override
+    public int hashCode() {
+        return firstTerm(SEED)  + (int)( id ^ (id >>> 32) );
+    }
+
+    private static int firstTerm( int aSeed ){
+        return fODD_PRIME_NUMBER * aSeed;
     }
 }

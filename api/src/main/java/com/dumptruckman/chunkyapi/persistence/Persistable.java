@@ -1,5 +1,6 @@
 package com.dumptruckman.chunkyapi.persistence;
 
+import com.avaje.ebean.validation.NotNull;
 import com.dumptruckman.chunkyapi.json.JSONObject;
 
 import javax.persistence.Column;
@@ -26,6 +27,31 @@ public interface Persistable {
      */
     @Column(name = "CLASS_NAME", nullable = false, length = 512)
     String getClassName();
+
+    /**
+     * @return The name of this object.
+     */
+    @NotNull
+    @Column(name = "NAME")
+    public String getName();
+
+    /**
+     * Sets the name of this object to name.
+     *
+     * @param name New name for object.
+     */
+    @NotNull
+    public void setName(String name);
+
+    /**
+     * @return A description of this object, may be blank.
+     */
+    @NotNull
+    @Column(name = "DESC")
+    public String getDescription();
+
+    @NotNull
+    public void setDescription(String description);
 
     /**
      * @return The time the entry was last updated. (In the db?)
