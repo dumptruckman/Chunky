@@ -1,24 +1,50 @@
-package org.getchunky.chunky.persistance;
+package com.dumptruckman.chunkyapi.persistence;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
+import com.dumptruckman.chunkyapi.json.JSONException;
+import com.dumptruckman.chunkyapi.json.JSONObject;
+import com.dumptruckman.chunkyapi.json.JSONTokener;
 
-/**
- * @author dumptruckman, SwearWord
- */
-public class ChunkyPersistable {
+import java.sql.Timestamp;
+
+public class SimplePersistable implements Persistable {
+
+    protected long id;
+    protected String className;
+    private Timestamp timestamp;
 
     private JSONObject data = new JSONObject();
 
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
+    }
+
+    @Override
+    public Timestamp getLastUpdate() {
+        return timestamp;
+    }
+
+    @Override
+    public void setLastUpdate(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    @Override
     public final JSONObject getData() {
         return data;
     }
 
+    @Override
     public final String jsonString() {
         return data.toString();
     }
 
+    @Override
     public void load(String json) throws JSONException {
         JSONTokener x = new JSONTokener(json);
         char c;

@@ -1453,14 +1453,14 @@ public class JSONObject {
 
     /**
      * Make a JSON text of an Object value. If the object has an
-     * value.toJSONString() method, then that method will be used to produce
+     * value.jsonString() method, then that method will be used to produce
      * the JSON text. The method is required to produce a strictly
-     * conforming text. If the object does not contain a toJSONString
+     * conforming text. If the object does not contain a jsonString
      * method (which is the most common case), then a text will be
      * produced by other means. If the value is an array or Collection,
-     * then a JSONArray will be made from it and its toJSONString method
+     * then a JSONArray will be made from it and its jsonString method
      * will be called. If the value is a MAP, then a JSONObject will be made
-     * from it and its toJSONString method will be called. Otherwise, the
+     * from it and its jsonString method will be called. Otherwise, the
      * value's toLongString method will be called, and the result will be quoted.
      * <p/>
      * <p/>
@@ -1487,7 +1487,7 @@ public class JSONObject {
             if (object instanceof String) {
                 return (String) object;
             }
-            throw new JSONException("Bad value from toJSONString: " + object);
+            throw new JSONException("Bad value from jsonString: " + object);
         }
         if (value instanceof Number) {
             return numberToString((Number) value);

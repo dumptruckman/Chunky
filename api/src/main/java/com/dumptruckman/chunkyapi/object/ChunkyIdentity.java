@@ -1,12 +1,12 @@
 package com.dumptruckman.chunkyapi.object;
 
 import com.avaje.ebean.validation.NotNull;
-import com.dumptruckman.chunkyapi.persistence.PersistableInterface;
+import com.dumptruckman.chunkyapi.persistence.Persistable;
 
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public interface ChunkyIdentity extends PersistableInterface {
+public interface ChunkyIdentity extends Persistable {
 
     /**
      * @return The name of this object.
