@@ -6,9 +6,9 @@
         <artifactId>chunky</artifactId>
         <version>dev-SNAPSHOT</version>
     </parent>
-    <artifactId>chunkyplugin</artifactId>
+    <artifactId>chunkybukkit</artifactId>
     <version>dev-SNAPSHOT</version>
-    <name>ChunkyPlugin</name>
+    <name>ChunkyBukkit</name>
     <description>Standard Bukkit implementation of ChunkyAPI</description>
 
     <repositories>
@@ -230,10 +230,14 @@ and adjust the build number accordingly -->
         <!-- End of Test Dependencies -->
     </dependencies>
 
-    <!--<distributionManagement>
+    <distributionManagement>
         <repository>
-            <id>OnARandomBox</id>
-            <url>http://repo.onarandombox.com/content/repositories/multiverse</url>
+            <id>griefcraft</id>
+            <url>http://repo.griefcraft.com/content/repositories/releases</url>
         </repository>
-    </distributionManagement>-->
+        <snapshotRepository>
+            <id>griefcraft</id>
+            <url>http://repo.griefcraft.com/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

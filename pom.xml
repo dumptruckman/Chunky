@@ -28,11 +28,11 @@
     <distributionManagement>
         <repository>
             <id>griefcraft</id>
-            <url>http://repo.griefcraft.com/content/repositories/releases/</url>
+            <url>http://repo.griefcraft.com/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>griefcraft</id>
-            <url>http://repo.griefcraft.com/content/repositories/snapshots/</url>
+            <url>http://repo.griefcraft.com/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
