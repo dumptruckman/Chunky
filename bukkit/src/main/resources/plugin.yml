@@ -1,5 +1,5 @@
 name: Chunky
-main: com.dumptruckman.chunkyplugin.ChunkyPlugin
+main: com.dumptruckman.minecraft.chunky.bukkit.ChunkyPlugin
 version: ${project.version}-b${build.number}
 author: dumptruckman
 

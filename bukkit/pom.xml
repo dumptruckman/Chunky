@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.dumptruckman.chunky</groupId>
+        <groupId>com.dumptruckman.minecraft</groupId>
         <artifactId>chunky</artifactId>
         <version>dev-SNAPSHOT</version>
     </parent>
@@ -144,13 +144,14 @@ and adjust the build number accordingly -->
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>com.dumptruckman:PluginBase</include>
+                                    <include>com.dumptruckman.minecraft:PluginBase</include>
+                                    <include>com.dumptruckman.minecraft:chunkyapi</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
                                 <relocation>
-                                    <pattern>com.dumptruckman.tools</pattern>
-                                    <shadedPattern>com.dumptruckman.chunkyplugin.pluginbase</shadedPattern>
+                                    <pattern>com.dumptruckman.minecraft.pluginbase</pattern>
+                                    <shadedPattern>com.dumptruckman.minecraft.chunky.pluginbase</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
@@ -172,29 +173,20 @@ and adjust the build number accordingly -->
         <dependency>
             <groupId>com.dumptruckman.minecraft</groupId>
             <artifactId>BukkitPlugin</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.2-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <!-- Start of ChunkyAPI Dependency -->
+        <!-- ChunkyAPI Dependency -->
         <dependency>
-            <groupId>com.dumptruckman.chunky</groupId>
+            <groupId>com.dumptruckman.minecraft</groupId>
             <artifactId>chunkyapi</artifactId>
             <version>dev-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <!-- End of ChunkyAPI Dependency -->
-        <!-- Start of PluginBase Dependency -->
-        <dependency>
-            <groupId>com.dumptruckman</groupId>
-            <artifactId>PluginBase</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <!-- End of PluginBase Dependency -->
-        <!-- Start of Test Dependencies -->
+
+        <!-- Test Dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -227,7 +219,6 @@ and adjust the build number accordingly -->
             <version>3.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- End of Test Dependencies -->
     </dependencies>
 
     <distributionManagement>
