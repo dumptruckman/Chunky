@@ -1,23 +1,29 @@
-package com.dumptruckman.minecraft.chunky.persistence;
+package com.dumptruckman.minecraft.chunky.object;
 
-import com.dumptruckman.minecraft.chunky.json.JSONException;
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.dumptruckman.minecraft.chunky.json.JSONTokener;
 
 import java.sql.Timestamp;
 
-public class DefaultPersistable implements Persistable {
+class DefaultChunkyObject implements ChunkyObject {
 
     private static final int SEED = 42;
     private static final int fODD_PRIME_NUMBER = 37;
 
-    protected long id;
-    protected String className;
-    protected String name = "";
-    protected String description = "";
-    private Timestamp timestamp;
+    private String className;
+    private long id;
+
+    private String name = "";
+    private String description = "";
+    private Timestamp lastUpdate;
 
     private JSONObject data = new JSONObject();
+
+    DefaultChunkyObject(String className, long id, Timestamp lastUpdate) {
+        this.className = className;
+        this.id = id;
+        this.lastUpdate = lastUpdate;
+    }
 
     @Override
     public long getId() {
@@ -29,27 +35,16 @@ public class DefaultPersistable implements Persistable {
         return className;
     }
 
-    /**
-     * @return The name of this object.
-     */
     @Override
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets the name of this object to name.
-     *
-     * @param name New name for object.
-     */
     @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return A description of this object, may be blank.
-     */
     @Override
     public String getDescription() {
         return description;
@@ -62,27 +57,27 @@ public class DefaultPersistable implements Persistable {
 
     @Override
     public Timestamp getLastUpdate() {
-        return timestamp;
+        return lastUpdate;
     }
 
     @Override
     public void setLastUpdate(Timestamp timestamp) {
-        this.timestamp = timestamp;
+        lastUpdate = timestamp;
     }
 
     @Override
-    public final JSONObject getData() {
+    public JSONObject getData() {
         return data;
     }
 
     @Override
-    public final String jsonString() {
+    public String jsonString() {
         return data.toString();
     }
 
     @Override
-    public void load(String json) throws JSONException {
-        JSONTokener x = new JSONTokener(json);
+    public void load(String jsonString) {
+        JSONTokener x = new JSONTokener(jsonString);
         char c;
         String key;
 
@@ -133,7 +128,7 @@ public class DefaultPersistable implements Persistable {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Persistable && ((Persistable)o).getId() == id;
+        return o instanceof ChunkyObject && ((ChunkyObject)o).getId() == id;
     }
 
     @Override

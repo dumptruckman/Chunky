@@ -1,14 +1,12 @@
 package com.dumptruckman.minecraft.chunky.object;
 
 import com.dumptruckman.minecraft.chunky.json.JSONException;
+import com.dumptruckman.minecraft.pluginbase.util.Logging;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-/**
- * @author dumptruckman, SwearWord
- */
 public abstract class AbstractObject implements ChunkyObject {
 
     /**
