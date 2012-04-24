@@ -602,9 +602,9 @@ public class JSONArray {
      *
      * @param value A double value.
      * @return this.
-     * @throws JSONException if the value is not finite.
+     * @throws IllegalArgumentException if the value is not finite.
      */
-    public JSONArray put(double value) throws JSONException {
+    public JSONArray put(double value) throws IllegalArgumentException {
         Double d = new Double(value);
         JSONObject.testValidity(d);
         put(d);
@@ -770,13 +770,13 @@ public class JSONArray {
      *              Boolean, Double, Integer, JSONArray, JSONObject, Long, or String, or the
      *              JSONObject.NULL object.
      * @return this.
-     * @throws JSONException If the index is negative or if the the value is
+     * @throws IllegalArgumentException If the index is negative or if the the value is
      *                       an invalid number.
      */
-    public JSONArray put(int index, Object value) throws JSONException {
+    public JSONArray put(int index, Object value) throws IllegalArgumentException {
         JSONObject.testValidity(value);
         if (index < 0) {
-            throw new JSONException("JSONArray[" + index + "] not found.");
+            throw new IllegalArgumentException("JSONArray[" + index + "] not found.");
         }
         if (index < length()) {
             this.myArrayList.set(index, value);

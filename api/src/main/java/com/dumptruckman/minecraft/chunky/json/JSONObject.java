@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import com.dumptruckman.minecraft.util.Logging;
+import com.dumptruckman.minecraft.pluginbase.util.Logging;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -375,13 +375,13 @@ public class JSONObject {
      * @param key   A key string.
      * @param value An object to be accumulated under the key.
      * @return this.
-     * @throws JSONException If the value is an invalid number
+     * @throws IllegalArgumentException If the value is an invalid number
      *                       or if the key is null.
      */
     public JSONObject accumulate(
             String key,
             Object value
-    ) throws JSONException {
+    ) throws IllegalArgumentException {
         testValidity(value);
         Object object = opt(key);
         if (object == null) {
@@ -405,10 +405,10 @@ public class JSONObject {
      * @param key   A key string.
      * @param value An object to be accumulated under the key.
      * @return this.
-     * @throws JSONException If the key is null or if the current value
-     *                       associated with the key is not a JSONArray.
+     * @throws JSONException If the current value associated with the key is not a JSONArray.
+     * @throws IllegalArgumentException If the key is null.
      */
-    public JSONObject append(String key, Object value) throws JSONException {
+    public JSONObject append(String key, Object value) throws JSONException, IllegalArgumentException {
         testValidity(value);
         Object object = opt(key);
         if (object == null) {
@@ -748,18 +748,18 @@ public class JSONObject {
      *
      * @param number A Number
      * @return A String.
-     * @throws JSONException If n is a non-finite number.
+     * @throws IllegalArgumentException If n is null or is a non-finite number.
      */
-    public static String numberToString(Number number)
-            throws JSONException {
-        if (number == null) {
-            throw new JSONException("Null pointer");
+    public static String numberToString(Number n)
+            throws IllegalArgumentException {
+        if (n == null) {
+            throw new IllegalArgumentException("Null pointer");
         }
-        testValidity(number);
+        testValidity(n);
 
 // Shave off trailing zeros and decimal point, if possible.
 
-        String string = number.toString();
+        String string = n.toString();
         if (string.indexOf('.') > 0 && string.indexOf('e') < 0 &&
                 string.indexOf('E') < 0) {
             while (string.endsWith("0")) {
@@ -1111,13 +1111,13 @@ public class JSONObject {
      *              types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String,
      *              or the JSONObject.NULL object.
      * @return this.
-     * @throws JSONException If the value is non-finite number
+     * @throws IllegalArgumentException If the value is non-finite number
      *                       or if the key is null.
      */
-    public JSONObject put(String key, Object value) throws JSONException {
-        Logging.finer("Putting:" + key + ":" + value);
+    public JSONObject put(String key, Object value) throws IllegalArgumentException {
+        Logging.finest("[JSON] Putting: " + key + " : " + value);
         if (key == null) {
-            throw new JSONException("Null key.");
+            throw new IllegalArgumentException("Null key.") ;
         }
         if (value != null) {
             testValidity(value);
@@ -1137,12 +1137,12 @@ public class JSONObject {
      * @param key
      * @param value
      * @return his.
-     * @throws JSONException if the key is a duplicate
+     * @throws IllegalStateException if the key is a duplicate
      */
-    public JSONObject putOnce(String key, Object value) throws JSONException {
+    public JSONObject putOnce(String key, Object value) throws IllegalStateException {
         if (key != null && value != null) {
             if (opt(key) != null) {
-                throw new JSONException("Duplicate key \"" + key + "\"");
+                throw new IllegalStateException("Duplicate key \"" + key + "\"");
             }
             put(key, value);
         }
@@ -1159,9 +1159,9 @@ public class JSONObject {
      *              types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String,
      *              or the JSONObject.NULL object.
      * @return this.
-     * @throws JSONException If the value is a non-finite number.
+     * @throws IllegalArgumentException If the value is a non-finite number.
      */
-    public JSONObject putOpt(String key, Object value) throws JSONException {
+    public JSONObject putOpt(String key, Object value) throws IllegalArgumentException {
         if (key != null && value != null) {
             put(key, value);
         }
@@ -1308,18 +1308,18 @@ public class JSONObject {
      * Throw an exception if the object is a NaN or infinite number.
      *
      * @param o The object to test.
-     * @throws JSONException If o is a non-finite number.
+     * @throws IllegalArgumentException If o is a non-finite number.
      */
-    public static void testValidity(Object o) throws JSONException {
+    public static void testValidity(Object o) throws IllegalArgumentException {
         if (o != null) {
             if (o instanceof Double) {
                 if (((Double) o).isInfinite() || ((Double) o).isNaN()) {
-                    throw new JSONException(
+                    throw new IllegalArgumentException(
                             "JSON does not allow non-finite numbers.");
                 }
             } else if (o instanceof Float) {
                 if (((Float) o).isInfinite() || ((Float) o).isNaN()) {
-                    throw new JSONException(
+                    throw new IllegalArgumentException(
                             "JSON does not allow non-finite numbers.");
                 }
             }
