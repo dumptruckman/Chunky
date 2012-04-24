@@ -1,5 +1,6 @@
 package com.dumptruckman.minecraft.chunky.persistence;
 
+import com.dumptruckman.minecraft.chunky.json.JSONException;
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
 
 import java.sql.Timestamp;
@@ -27,5 +28,5 @@ public interface Persistable {
 
     String jsonString();
 
-    void load(String jsonString);
+    void load(String jsonString) throws JSONException;
 }

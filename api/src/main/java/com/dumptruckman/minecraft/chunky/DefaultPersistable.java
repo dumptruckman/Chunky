@@ -1,5 +1,6 @@
 package com.dumptruckman.minecraft.chunky;
 
+import com.dumptruckman.minecraft.chunky.json.JSONException;
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.dumptruckman.minecraft.chunky.json.JSONTokener;
 import com.dumptruckman.minecraft.chunky.persistence.Persistable;
@@ -57,7 +58,7 @@ class DefaultPersistable implements Persistable {
     }
 
     @Override
-    public void load(String jsonString) {
+    public void load(String jsonString) throws JSONException {
         JSONTokener x = new JSONTokener(jsonString);
         char c;
         String key;
