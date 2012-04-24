@@ -8,8 +8,8 @@
 package com.dumptruckman.minecraft.chunky.bukkit.test.utils;
 
 import com.dumptruckman.minecraft.chunky.bukkit.ChunkyPlugin;
-import com.dumptruckman.minecraft.plugin.AbstractBukkitPlugin;
-import com.dumptruckman.tools.util.FileUtils;
+import com.dumptruckman.minecraft.pluginbase.plugin.AbstractBukkitPlugin;
+import com.dumptruckman.minecraft.pluginbase.util.FileUtils;
 import junit.framework.Assert;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,6 +27,7 @@ import org.mockito.Matchers;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.MockGateway;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -35,13 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyBoolean;
-import static org.mockito.Mockito.anyLong;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TestInstanceCreator {
     private AbstractBukkitPlugin plugin;
@@ -57,6 +52,8 @@ public class TestInstanceCreator {
         try {
             pluginDirectory.mkdirs();
             Assert.assertTrue(pluginDirectory.exists());
+
+            MockGateway.MOCK_STANDARD_METHODS = false;
 
             plugin = PowerMockito.spy(new ChunkyPlugin());
 

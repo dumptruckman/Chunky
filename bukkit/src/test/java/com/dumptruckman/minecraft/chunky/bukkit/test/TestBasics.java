@@ -8,8 +8,8 @@
 package com.dumptruckman.minecraft.chunky.bukkit.test;
 
 import com.dumptruckman.minecraft.chunky.bukkit.ChunkyPlugin;
-import com.dumptruckman.minecraft.config.BaseConfig;
 import com.dumptruckman.minecraft.chunky.bukkit.test.utils.TestInstanceCreator;
+import com.dumptruckman.minecraft.pluginbase.config.BaseConfig;
 import junit.framework.Assert;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -82,7 +82,7 @@ public class TestBasics {
 
         Assert.assertEquals(3, (int) myPlugin.config().get(BaseConfig.DEBUG_MODE));
 
-        Assert.assertEquals(BaseConfig.LOCALE.getDefault(), myPlugin.config().get(BaseConfig.LOCALE).toString());
+        Assert.assertEquals(BaseConfig.LOCALE.getDefault().toString(), myPlugin.config().get(BaseConfig.LOCALE).toString());
         
         myPlugin.config().set(BaseConfig.LOCALE, Locale.CANADA);
 
