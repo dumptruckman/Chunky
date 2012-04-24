@@ -2,7 +2,6 @@ package com.dumptruckman.minecraft.chunky;
 
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.dumptruckman.minecraft.chunky.json.JSONTokener;
-import com.dumptruckman.minecraft.chunky.object.ChunkyObject;
 import com.dumptruckman.minecraft.chunky.persistence.Persistable;
 
 import java.sql.Timestamp;
@@ -110,7 +109,7 @@ class DefaultPersistable implements Persistable {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof ChunkyObject && ((ChunkyObject)o).getId() == id;
+        return o instanceof Persistable && ((Persistable)o).getId() == id;
     }
 
     @Override
