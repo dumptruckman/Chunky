@@ -1,11 +1,13 @@
-package com.dumptruckman.minecraft.chunky.object;
+package com.dumptruckman.minecraft.chunky;
 
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.dumptruckman.minecraft.chunky.json.JSONTokener;
+import com.dumptruckman.minecraft.chunky.object.ChunkyObject;
+import com.dumptruckman.minecraft.chunky.persistence.Persistable;
 
 import java.sql.Timestamp;
 
-class DefaultChunkyObject implements ChunkyObject {
+class DefaultPersistable implements Persistable {
 
     private static final int SEED = 42;
     private static final int fODD_PRIME_NUMBER = 37;
@@ -19,7 +21,7 @@ class DefaultChunkyObject implements ChunkyObject {
 
     private JSONObject data = new JSONObject();
 
-    DefaultChunkyObject(String className, long id, Timestamp lastUpdate) {
+    DefaultPersistable(String className, long id, Timestamp lastUpdate) {
         this.className = className;
         this.id = id;
         this.lastUpdate = lastUpdate;
@@ -33,26 +35,6 @@ class DefaultChunkyObject implements ChunkyObject {
     @Override
     public String getClassName() {
         return className;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
