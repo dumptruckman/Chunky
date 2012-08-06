@@ -6,7 +6,7 @@ package com.dumptruckman.minecraft.chunky.json;
  * @author JSON.org
  * @version 2010-12-24
  */
-public class JSONException extends RuntimeException {
+public class JSONException extends Exception {
     private static final long serialVersionUID = 0;
     private Throwable cause;
 

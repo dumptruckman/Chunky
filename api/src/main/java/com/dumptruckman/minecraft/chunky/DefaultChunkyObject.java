@@ -11,22 +11,22 @@ class DefaultChunkyObject extends DefaultPersistable implements ChunkyObject {
     }
 
     @Override
-    public String getName() {
+    public final String getName() {
         return getData().optString("name");
     }
 
     @Override
-    public void setName(String name) {
+    public final void setName(String name) {
         getData().put("name", name);
     }
 
     @Override
-    public String getDescription() {
+    public final String getDescription() {
         return getData().optString("description");
     }
 
     @Override
-    public void setDescription(String description) {
+    public final void setDescription(String description) {
         getData().put("description", description);
     }
 }

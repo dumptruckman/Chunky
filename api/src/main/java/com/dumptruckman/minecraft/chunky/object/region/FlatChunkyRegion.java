@@ -1,0 +1,22 @@
+package com.dumptruckman.minecraft.chunky.object.region;
+
+import com.sk89q.worldedit.Vector2D;
+
+public interface FlatChunkyRegion extends ChunkyRegion {
+
+    /**
+     * Gets the minimum Y value
+     *
+     * @return
+     */
+    public int getMinimumY();
+
+    /**
+     * Gets the maximum Y value
+     *
+     * @return
+     */
+    public int getMaximumY();
+
+    public Iterable<Vector2D> asFlatRegion();
+}

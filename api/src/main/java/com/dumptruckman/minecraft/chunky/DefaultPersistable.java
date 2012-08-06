@@ -12,11 +12,11 @@ class DefaultPersistable implements Persistable {
     private static final int SEED = 42;
     private static final int fODD_PRIME_NUMBER = 37;
 
-    private String className;
-    private long id;
+    private final int hashCode;
 
-    private String name = "";
-    private String description = "";
+    private final String className;
+    private final long id;
+
     private Timestamp lastUpdate;
 
     private JSONObject data = new JSONObject();
@@ -25,40 +25,41 @@ class DefaultPersistable implements Persistable {
         this.className = className;
         this.id = id;
         this.lastUpdate = lastUpdate;
+        this.hashCode = firstTerm(SEED) + (int)(id ^ (id >>> 32));
     }
 
     @Override
-    public long getId() {
+    public final long getId() {
         return id;
     }
 
     @Override
-    public String getClassName() {
+    public final String getClassName() {
         return className;
     }
 
     @Override
-    public Timestamp getLastUpdate() {
+    public final Timestamp getLastUpdate() {
         return lastUpdate;
     }
 
     @Override
-    public void setLastUpdate(Timestamp timestamp) {
+    public final void setLastUpdate(Timestamp timestamp) {
         lastUpdate = timestamp;
     }
 
     @Override
-    public JSONObject getData() {
+    public final JSONObject getData() {
         return data;
     }
 
     @Override
-    public String jsonString() {
+    public final String jsonString() {
         return data.toString();
     }
 
     @Override
-    public void load(String jsonString) throws JSONException {
+    public final void load(String jsonString) throws JSONException {
         JSONTokener x = new JSONTokener(jsonString);
         char c;
         String key;
@@ -114,11 +115,11 @@ class DefaultPersistable implements Persistable {
     }
 
     @Override
-    public int hashCode() {
-        return firstTerm(SEED)  + (int)( id ^ (id >>> 32) );
+    public final int hashCode() {
+        return hashCode;
     }
 
-    private static int firstTerm( int aSeed ){
+    private static int firstTerm(final int aSeed) {
         return fODD_PRIME_NUMBER * aSeed;
     }
 }

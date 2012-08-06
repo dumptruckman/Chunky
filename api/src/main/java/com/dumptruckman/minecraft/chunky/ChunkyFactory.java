@@ -11,7 +11,7 @@ public final class ChunkyFactory {
         return new DefaultChunkyObject(clazz.getName(), newId, new Timestamp(newId));
     }
 
-    static ChunkyObject getChunkyObject(String className, long id) {
+    public static ChunkyObject getChunkyObject(long id) {
         return null;
     }
 }
