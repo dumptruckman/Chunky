@@ -20,15 +20,9 @@
             <id>bukkit</id>
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
-        <!-- Repository for other dependencies of SK's -->
         <repository>
-            <id>sk89q-mvn2</id>
-            <url>http://mvn2.sk89q.com/repo</url>
-        </repository>
-        <!-- Repository for zml's stuff -->
-        <repository>
-            <id>zml-repo</id>
-            <url>http://files.zachsthings.com/repo</url>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
         </repository>
     </repositories>
 
@@ -122,13 +116,25 @@ and adjust the build number accordingly -->
         </plugins>
     </build>
     <dependencies>
-        <!-- PluginBase dependency -->
         <dependency>
             <groupId>com.dumptruckman.minecraft</groupId>
             <artifactId>Plugin</artifactId>
-            <version>1.2-SNAPSHOT</version>
+            <version>1.5-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q</groupId>
+            <artifactId>worldedit</artifactId>
+            <version>5.4-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Test Dependencies -->
