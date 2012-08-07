@@ -3,6 +3,7 @@ package com.dumptruckman.minecraft.chunky;
 import com.dumptruckman.minecraft.chunky.json.JSONException;
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.dumptruckman.minecraft.chunky.json.JSONTokener;
+import com.dumptruckman.minecraft.chunky.persistence.JSON;
 import com.dumptruckman.minecraft.chunky.persistence.Persistable;
 
 import java.sql.Timestamp;
@@ -50,7 +51,23 @@ class DefaultPersistable implements Persistable {
 
     @Override
     public final JSONObject getData() {
-        return data;
+        if (!getClass().equals(DefaultPersistable.class) && getClass().isAnnotationPresent(JSON.class)) {
+            JSON json = getClass().getAnnotation(JSON.class);
+            JSONObject data = null;
+
+        } else {
+            return data;
+        }
+    }
+
+    private JSONObject getParent(Class clazz, JSONObject data) {
+        if (!getClass().equals(DefaultPersistable.class) && getClass().isAnnotationPresent(JSON.class)) {
+            JSON json = getClass().getAnnotation(JSON.class);
+            
+
+        } else {
+            return data;
+        }
     }
 
     @Override
