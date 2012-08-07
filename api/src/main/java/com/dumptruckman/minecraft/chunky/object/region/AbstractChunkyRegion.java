@@ -1,40 +1,35 @@
 package com.dumptruckman.minecraft.chunky.object.region;
 
-import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.dumptruckman.minecraft.chunky.object.AbstractChunkyObject;
+import com.dumptruckman.minecraft.chunky.persistence.JSONField;
+import com.dumptruckman.minecraft.chunky.persistence.JSONPath;
+import com.dumptruckman.minecraft.chunky.persistence.NotNull;
+import com.dumptruckman.minecraft.chunky.persistence.Table;
 import com.sk89q.worldedit.BlockVector;
 
 import java.util.Iterator;
 
+@Table("ChunkyRegion")
+@JSONPath({"region"})
 public abstract class AbstractChunkyRegion extends AbstractChunkyObject implements ChunkyRegion {
 
-    private final String world;
+    @JSONField
+    @NotNull
+    private String world;
 
-    public AbstractChunkyRegion(String world) {
+    public AbstractChunkyRegion(String world) throws /*JSONException,*/ IllegalArgumentException {
         super();
         if (world == null) {
             throw new IllegalArgumentException("world may not be null");
         }
         this.world = world;
-        getData().put("world", world);
     }
 
-    public AbstractChunkyRegion(long id) throws IllegalStateException, IllegalArgumentException {
+    public AbstractChunkyRegion(long id) throws /*JSONException,*/ IllegalStateException, IllegalArgumentException {
         super(id);
-        this.world = getData().optString("world");
         if (world == null) {
             throw new IllegalStateException("persisted world is null");
         }
-    }
-
-    @Override
-    public JSONObject getData() {
-        JSONObject ret = super.getData().optJSONObject("region");
-        if (ret == null) {
-            ret = new JSONObject();
-            super.getData().put("region", ret);
-        }
-        return ret;
     }
 
     @Override

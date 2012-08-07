@@ -1,14 +1,16 @@
-package com.dumptruckman.minecraft.chunky.json;
+package com.dumptruckman.minecraft.chunky.object.region;
 
+import com.dumptruckman.minecraft.chunky.json.JSONException;
+import com.dumptruckman.minecraft.chunky.json.JSONObject;
 import com.sk89q.worldedit.Vector;
 
-public class JSONObjects {
+public class VectorSerializer {
 
-    private JSONObjects() {
+    private VectorSerializer() {
         throw new AssertionError();
     }
 
-    public static JSONObject valueOf(Vector vector) {
+    public static JSONObject toJSON(Vector vector) throws JSONException {
         JSONObject vec = new JSONObject();
         vec.putOpt("x", vector.getX());
         vec.putOpt("y", vector.getY());
@@ -16,7 +18,7 @@ public class JSONObjects {
         return vec;
     }
 
-    public static Vector toVector(JSONObject obj) throws JSONException {
+    public static Vector fromJSON(JSONObject obj) throws JSONException {
         if (obj == null) {
             throw new JSONException("obj is null");
         }

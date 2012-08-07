@@ -1,7 +1,8 @@
 package com.dumptruckman.minecraft.chunky.object.region;
 
-import com.dumptruckman.minecraft.chunky.json.JSONException;
-import com.dumptruckman.minecraft.chunky.json.JSONObjects;
+import com.dumptruckman.minecraft.chunky.persistence.JSONField;
+import com.dumptruckman.minecraft.chunky.persistence.JSONSerialized;
+import com.dumptruckman.minecraft.chunky.persistence.NotNull;
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.BlockVector2D;
 import com.sk89q.worldedit.Vector;
@@ -15,24 +16,23 @@ import java.util.Set;
 
 public class CuboidChunkyRegion extends AbstractChunkyRegion implements ChunkyRegion, FlatChunkyRegion {
 
-    private final Vector pos1, pos2;
+    @JSONField
+    @NotNull
+    @JSONSerialized(VectorSerializer.class)
+    private Vector pos1;
+    @JSONField
+    @NotNull
+    @JSONSerialized(VectorSerializer.class)
+    private Vector pos2;
 
     public CuboidChunkyRegion(String world, Vector pos1, Vector pos2) {
         super(world);
         this.pos1 = pos1;
-        getData().put("pos1", JSONObjects.valueOf(pos1));
         this.pos2 = pos2;
-        getData().put("pos2", JSONObjects.valueOf(pos2));
     }
 
-    public CuboidChunkyRegion(long id) {
+    public CuboidChunkyRegion(Long id) {
         super(id);
-        try {
-            pos1 = JSONObjects.toVector(getData().getJSONObject("pos1"));
-            pos2 = JSONObjects.toVector(getData().getJSONObject("pos2"));
-        } catch (JSONException e) {
-            throw new IllegalStateException("JSON data is invalid!");
-        }
     }
 
     public CuboidChunkyRegion(Region region) {

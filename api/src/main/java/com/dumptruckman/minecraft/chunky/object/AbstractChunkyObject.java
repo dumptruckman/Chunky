@@ -1,20 +1,21 @@
 package com.dumptruckman.minecraft.chunky.object;
 
 import com.dumptruckman.minecraft.chunky.ChunkyFactory;
-import com.dumptruckman.minecraft.chunky.json.JSONException;
 import com.dumptruckman.minecraft.chunky.json.JSONObject;
+import com.dumptruckman.minecraft.chunky.persistence.Table;
 
 import java.sql.Timestamp;
 
+@Table("ChunkyObject")
 public class AbstractChunkyObject implements ChunkyObject {
 
     private final ChunkyObject chunkyObject;
 
-    public AbstractChunkyObject() {
+    public AbstractChunkyObject() throws /*JSONException,*/ IllegalArgumentException {
         chunkyObject = ChunkyFactory.newChunkyObject(this.getClass());
     }
 
-    public AbstractChunkyObject(long id) throws IllegalStateException, IllegalArgumentException {
+    public AbstractChunkyObject(long id) throws /*JSONException,*/ IllegalStateException, IllegalArgumentException {
         chunkyObject = ChunkyFactory.getChunkyObject(id);
         if (chunkyObject == null) {
             throw new IllegalArgumentException("There is no object with id: " + id);
@@ -72,7 +73,12 @@ public class AbstractChunkyObject implements ChunkyObject {
     }
 
     @Override
-    public void load(String jsonString) throws JSONException {
-        chunkyObject.load(jsonString);
+    public String getTable() {
+        return chunkyObject.getTable();
+    }
+
+    @Override
+    public void serialize() {
+        chunkyObject.serialize();
     }
 }
