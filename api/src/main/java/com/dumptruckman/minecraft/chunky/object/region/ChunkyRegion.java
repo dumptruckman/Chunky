@@ -1,13 +1,12 @@
 package com.dumptruckman.minecraft.chunky.object.region;
 
-import com.dumptruckman.minecraft.chunky.object.ChunkyObject;
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.Vector2D;
 
 import java.util.Set;
 
-public interface ChunkyRegion extends ChunkyObject, Iterable<BlockVector>, Cloneable {
+public interface ChunkyRegion extends Iterable<BlockVector>, Cloneable {
 
     public Vector getMinimumPoint();
 

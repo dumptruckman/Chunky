@@ -1,33 +1,35 @@
 package com.dumptruckman.minecraft.chunky.persistence;
 
-import com.dumptruckman.minecraft.chunky.json.JSONObject;
-
 import java.sql.Timestamp;
 
 public interface Persistable {
 
     /**
+     * Gets the database row ID for this object.  An ID of -1 generally means that this object has not been
+     * persisted to a database.
+     *
      * @return The ID of this object for database persistence.
      */
-    long getId();
+    int getId();
 
     /**
-     * @return This instance's class name as a string.
+     * Sets the database row ID for this object.
+     *
+     * @param id The database row ID for this object.
      */
-    String getClassName();
+    void setId(int id);
 
     /**
-     * @return The time the entry was last updated. (In the db?)
+     * Gets the time at which this object was last updated in the database.
+     *
+     * @return The time the entry was last updated in the database.
      */
     Timestamp getLastUpdate();
 
+    /**
+     * Sets the time at which this object was last updated in the database.
+     *
+     * @param timestamp The time the entry was last updated in the database.
+     */
     void setLastUpdate(Timestamp timestamp);
-
-    JSONObject getData();
-
-    String jsonString();
-
-    String getTable();
-
-    void serialize();
 }

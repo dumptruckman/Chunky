@@ -1,8 +1,5 @@
 package com.dumptruckman.minecraft.chunky.object.region;
 
-import com.dumptruckman.minecraft.chunky.persistence.JSONField;
-import com.dumptruckman.minecraft.chunky.persistence.JSONSerialized;
-import com.dumptruckman.minecraft.chunky.persistence.NotNull;
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.BlockVector2D;
 import com.sk89q.worldedit.Vector;
@@ -16,13 +13,7 @@ import java.util.Set;
 
 public class CuboidChunkyRegion extends AbstractChunkyRegion implements ChunkyRegion, FlatChunkyRegion {
 
-    @JSONField
-    @NotNull
-    @JSONSerialized(VectorSerializer.class)
     private Vector pos1;
-    @JSONField
-    @NotNull
-    @JSONSerialized(VectorSerializer.class)
     private Vector pos2;
 
     public CuboidChunkyRegion(String world, Vector pos1, Vector pos2) {
@@ -31,7 +22,7 @@ public class CuboidChunkyRegion extends AbstractChunkyRegion implements ChunkyRe
         this.pos2 = pos2;
     }
 
-    public CuboidChunkyRegion(Long id) {
+    public CuboidChunkyRegion(int id) {
         super(id);
     }
 

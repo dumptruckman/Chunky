@@ -1,20 +1,11 @@
 package com.dumptruckman.minecraft.chunky.object.region;
 
-import com.dumptruckman.minecraft.chunky.object.AbstractChunkyObject;
-import com.dumptruckman.minecraft.chunky.persistence.JSONField;
-import com.dumptruckman.minecraft.chunky.persistence.JSONPath;
-import com.dumptruckman.minecraft.chunky.persistence.NotNull;
-import com.dumptruckman.minecraft.chunky.persistence.Table;
 import com.sk89q.worldedit.BlockVector;
 
 import java.util.Iterator;
 
-@Table("ChunkyRegion")
-@JSONPath({"region"})
-public abstract class AbstractChunkyRegion extends AbstractChunkyObject implements ChunkyRegion {
+public abstract class AbstractChunkyRegion implements ChunkyRegion {
 
-    @JSONField
-    @NotNull
     private String world;
 
     public AbstractChunkyRegion(String world) throws /*JSONException,*/ IllegalArgumentException {
@@ -25,8 +16,7 @@ public abstract class AbstractChunkyRegion extends AbstractChunkyObject implemen
         this.world = world;
     }
 
-    public AbstractChunkyRegion(long id) throws /*JSONException,*/ IllegalStateException, IllegalArgumentException {
-        super(id);
+    public AbstractChunkyRegion(int id) throws /*JSONException,*/ IllegalStateException, IllegalArgumentException {
         if (world == null) {
             throw new IllegalStateException("persisted world is null");
         }
