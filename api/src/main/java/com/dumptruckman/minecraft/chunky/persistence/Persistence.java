@@ -51,14 +51,4 @@ public class Persistence implements Persistable {
     public final void setLastUpdate(Timestamp timestamp) {
         lastUpdate = timestamp;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        return o instanceof Persistable && ((Persistable)o).getId() == id;
-    }
-
-    @Override
-    public int hashCode() {
-        return firstTerm(SEED) + (int)(id ^ (id >>> 32));
-    }
 }
