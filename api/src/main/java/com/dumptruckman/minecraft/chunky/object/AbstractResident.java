@@ -2,15 +2,15 @@ package com.dumptruckman.minecraft.chunky.object;
 
 import com.dumptruckman.minecraft.chunky.persistence.AbstractPersistable;
 
-public abstract class AbstractChunkyPlayer extends AbstractPersistable implements ChunkyPlayer {
+public abstract class AbstractResident extends AbstractPersistable implements Resident {
 
     private final String name;
 
-    protected AbstractChunkyPlayer(String playerName) {
+    protected AbstractResident(String playerName) {
         this.name = playerName;
     }
 
-    protected AbstractChunkyPlayer(String playerName, int id) {
+    protected AbstractResident(String playerName, int id) {
         super(id);
         this.name = playerName;
     }

@@ -2,7 +2,7 @@ package com.dumptruckman.minecraft.chunky.object;
 
 import com.dumptruckman.minecraft.chunky.persistence.Persistable;
 
-public interface ChunkyPlayer extends Persistable {
+public interface Resident extends Persistable {
 
     /**
      * Gets the name of the player.
