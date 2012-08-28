@@ -11,11 +11,11 @@ public class Persistence implements Persistable {
         return fODD_PRIME_NUMBER * aSeed;
     }
 
-    public Persistable newPersistable() {
+    public static Persistable newPersistable() {
         return new Persistence();
     }
 
-    public Persistable newPersistable(int id) {
+    public static Persistable newPersistable(int id) {
         return new Persistence(id);
     }
 
