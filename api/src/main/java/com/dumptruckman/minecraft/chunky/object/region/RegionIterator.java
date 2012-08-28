@@ -23,7 +23,7 @@ import com.sk89q.worldedit.Vector;
 import java.util.Iterator;
 
 public class RegionIterator implements Iterator<BlockVector> {
-    private final ChunkyRegion region;
+    private final Region region;
     private final int maxX;
     private final int maxY;
     private final int maxZ;
@@ -32,7 +32,7 @@ public class RegionIterator implements Iterator<BlockVector> {
     private int nextY;
     private int nextZ;
 
-    public RegionIterator(ChunkyRegion region) {
+    public RegionIterator(Region region) {
         this.region = region;
 
         Vector max = region.getMaximumPoint();

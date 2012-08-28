@@ -6,7 +6,7 @@ import com.sk89q.worldedit.Vector2D;
 
 import java.util.Set;
 
-public interface ChunkyRegion extends Iterable<BlockVector>, Cloneable {
+public interface Region extends Iterable<BlockVector>, Cloneable {
 
     public Vector getMinimumPoint();
 
@@ -28,5 +28,5 @@ public interface ChunkyRegion extends Iterable<BlockVector>, Cloneable {
 
     public String getWorld();
 
-    public ChunkyRegion clone() throws CloneNotSupportedException;
+    public Region clone() throws CloneNotSupportedException;
 }

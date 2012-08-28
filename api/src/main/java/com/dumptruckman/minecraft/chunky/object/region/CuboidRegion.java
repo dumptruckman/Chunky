@@ -5,28 +5,27 @@ import com.sk89q.worldedit.BlockVector2D;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.Vector2D;
 import com.sk89q.worldedit.data.ChunkStore;
-import com.sk89q.worldedit.regions.Region;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class CuboidChunkyRegion extends AbstractChunkyRegion implements ChunkyRegion, FlatChunkyRegion {
+public class CuboidRegion extends AbstractRegion implements Region, FlatRegion {
 
     private Vector pos1;
     private Vector pos2;
 
-    public CuboidChunkyRegion(String world, Vector pos1, Vector pos2) {
+    public CuboidRegion(String world, Vector pos1, Vector pos2) {
         super(world);
         this.pos1 = pos1;
         this.pos2 = pos2;
     }
 
-    public CuboidChunkyRegion(int id) {
+    public CuboidRegion(int id) {
         super(id);
     }
 
-    public CuboidChunkyRegion(Region region) {
+    public CuboidRegion(com.sk89q.worldedit.regions.Region region) {
         this(region.getWorld().getName(), region.getMinimumPoint(), region.getMaximumPoint());
     }
 
@@ -213,7 +212,7 @@ public class CuboidChunkyRegion extends AbstractChunkyRegion implements ChunkyRe
         return getMinimumPoint() + " - " + getMaximumPoint();
     }
 
-    public CuboidChunkyRegion clone() throws CloneNotSupportedException {
-        return (CuboidChunkyRegion) super.clone();
+    public CuboidRegion clone() throws CloneNotSupportedException {
+        return (CuboidRegion) super.clone();
     }
 }

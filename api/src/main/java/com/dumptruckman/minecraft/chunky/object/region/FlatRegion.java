@@ -2,7 +2,7 @@ package com.dumptruckman.minecraft.chunky.object.region;
 
 import com.sk89q.worldedit.Vector2D;
 
-public interface FlatChunkyRegion extends ChunkyRegion {
+public interface FlatRegion extends Region {
 
     /**
      * Gets the minimum Y value

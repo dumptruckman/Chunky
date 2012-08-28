@@ -4,11 +4,11 @@ import com.sk89q.worldedit.BlockVector;
 
 import java.util.Iterator;
 
-public abstract class AbstractChunkyRegion implements ChunkyRegion {
+public abstract class AbstractRegion implements Region {
 
     private String world;
 
-    public AbstractChunkyRegion(String world) throws /*JSONException,*/ IllegalArgumentException {
+    public AbstractRegion(String world) throws IllegalArgumentException {
         super();
         if (world == null) {
             throw new IllegalArgumentException("world may not be null");
@@ -16,7 +16,7 @@ public abstract class AbstractChunkyRegion implements ChunkyRegion {
         this.world = world;
     }
 
-    public AbstractChunkyRegion(int id) throws /*JSONException,*/ IllegalStateException, IllegalArgumentException {
+    public AbstractRegion(int id) throws IllegalStateException, IllegalArgumentException {
         if (world == null) {
             throw new IllegalStateException("persisted world is null");
         }
@@ -33,9 +33,9 @@ public abstract class AbstractChunkyRegion implements ChunkyRegion {
     }
 
     @Override
-    public AbstractChunkyRegion clone() throws CloneNotSupportedException {
+    public AbstractRegion clone() throws CloneNotSupportedException {
         try {
-            return (AbstractChunkyRegion) super.clone();
+            return (AbstractRegion) super.clone();
         } catch (CloneNotSupportedException exc) {
             return null;
         }
