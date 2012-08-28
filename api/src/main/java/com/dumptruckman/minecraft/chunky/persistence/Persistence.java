@@ -4,13 +4,6 @@ import java.sql.Timestamp;
 
 public class Persistence implements Persistable {
 
-    private static final int SEED = 42;
-    private static final int fODD_PRIME_NUMBER = 37;
-
-    private static int firstTerm(final int aSeed) {
-        return fODD_PRIME_NUMBER * aSeed;
-    }
-
     public static Persistable newPersistable() {
         return new Persistence();
     }
