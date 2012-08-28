@@ -2,7 +2,7 @@ package com.dumptruckman.minecraft.chunky.persistence;
 
 import java.sql.Timestamp;
 
-public class AbstractPersistable implements Persistable {
+public abstract class AbstractPersistable implements Persistable {
 
     private final Persistable persistable;
 
