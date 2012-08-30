@@ -7,7 +7,7 @@
 
 package com.dumptruckman.minecraft.chunky.bukkit.test.utils;
 
-import com.dumptruckman.minecraft.chunky.bukkit.ChunkyPlugin;
+import com.dumptruckman.minecraft.chunky.bukkit.ChunkyBukkit;
 import com.dumptruckman.minecraft.pluginbase.plugin.AbstractBukkitPlugin;
 import com.dumptruckman.minecraft.pluginbase.util.FileUtils;
 import junit.framework.Assert;
@@ -55,14 +55,14 @@ public class TestInstanceCreator {
 
             MockGateway.MOCK_STANDARD_METHODS = false;
 
-            plugin = PowerMockito.spy(new ChunkyPlugin());
+            plugin = PowerMockito.spy(new ChunkyBukkit());
 
             // Let's let all MV files go to bin/test
             doReturn(pluginDirectory).when(plugin).getDataFolder();
 
             // Return a fake PDF file.
             PluginDescriptionFile pdf = new PluginDescriptionFile("Chunky", "1.0",
-                    "com.dumptruckman.minecraft.chunky.bukkit.ChunkyPlugin");
+                    "com.dumptruckman.minecraft.chunky.bukkit.ChunkyBukkit");
             doReturn(pdf).when(plugin).getDescription();
             doReturn(true).when(plugin).isEnabled();
             plugin.setServerFolder(serverDirectory);

@@ -7,7 +7,7 @@
 
 package com.dumptruckman.minecraft.chunky.bukkit.test;
 
-import com.dumptruckman.minecraft.chunky.bukkit.ChunkyPlugin;
+import com.dumptruckman.minecraft.chunky.bukkit.ChunkyBukkit;
 import com.dumptruckman.minecraft.chunky.bukkit.test.utils.TestInstanceCreator;
 import com.dumptruckman.minecraft.pluginbase.config.BaseConfig;
 import junit.framework.Assert;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ ChunkyPlugin.class })
+@PrepareForTest({ ChunkyBukkit.class })
 public class TestBasics {
     TestInstanceCreator creator;
     Server mockServer;
@@ -54,7 +54,7 @@ public class TestBasics {
     public void testEnableDebugMode() {
         // Pull a core instance from the server.
         Plugin plugin = mockServer.getPluginManager().getPlugin("Chunky");
-        ChunkyPlugin myPlugin = (ChunkyPlugin) plugin;
+        ChunkyBukkit myPlugin = (ChunkyBukkit) plugin;
 
         // Make sure Core is not null
         assertNotNull(plugin);
